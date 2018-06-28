@@ -12,7 +12,7 @@ class RepositoriesController < ApplicationController
         req.params['q'] = params[:query]
       end
 
-      items = JSON.parse(@resp.items)
+      items = JSON.parse(@res.items)
       if @res.success?
         @results = items
       else
