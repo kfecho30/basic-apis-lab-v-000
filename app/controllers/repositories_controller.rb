@@ -6,18 +6,18 @@ class RepositoriesController < ApplicationController
 
   def github_search
     begin
-    @res = Faraday.get 'https://api.github.com/search/repositories' do |req|
-      req.params['client_id'] = '0a45dd6c835edc4e28b1'
-      req.params['client_secret'] = '30cd2d6589c1d57899f34520213b89824fd89cf8'
-      req.params['q'] = params[:query]
-    end
+      @res = Faraday.get 'https://api.github.com/search/repositories' do |req|
+        req.params['client_id'] = '0a45dd6c835edc4e28b1'
+        req.params['client_secret'] = '30cd2d6589c1d57899f34520213b89824fd89cf8'
+        req.params['q'] = params[:query]
+      end
 
-    items = JSON.parse(@resp.items)
-    if @res.success?
-      @results = items
-    else
-      @error = items["meta"]["errorDetail"]
-    end
+      items = JSON.parse(@resp.items)
+      if @res.success?
+        @results = items
+      else
+        @error = items["meta"]["errorDetail"]
+      end
 
   rescue Faraday::ConnectionFailed
     @error = "There was a timeout. Please try again."
