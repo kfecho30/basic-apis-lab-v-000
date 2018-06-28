@@ -13,7 +13,8 @@
     <% @results.each do |result| %>
       <li>
         <%= result["name"] %><br>
-        <a href="<%= result[html_url]">Check It Out</a><br>
+        <a href="<%= result[html_url]%>">Check It Out</a><br>
+        <%= result["description"] %>
       </li>
     <% end %>
     </ul>
